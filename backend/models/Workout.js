@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
+require("./User"); // 👈 add this line
 
 const workoutSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },  // removed required: true
-  type: { type: String },  // removed required: true
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  type: { type: String, required: true },
   duration: { type: Number, required: true },
   exercises: [
     {
       name: { type: String, required: true },
       reps: { type: Number },
       sets: { type: Number },
-      weight: { type: Number },
+      weight: { type: Number }
     }
   ],
   date: { type: Date, default: Date.now }
