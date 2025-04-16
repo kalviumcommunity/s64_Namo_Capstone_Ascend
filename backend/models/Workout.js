@@ -1,10 +1,9 @@
-// models/Workout.js
 const mongoose = require("mongoose");
 
 const workoutSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },  // Reference to the user
-  type: { type: String, required: true },  // e.g., Cardio, Strength
-  duration: { type: Number, required: true },  // Duration in minutes
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },  // removed required: true
+  type: { type: String },  // removed required: true
+  duration: { type: Number, required: true },
   exercises: [
     {
       name: { type: String, required: true },
