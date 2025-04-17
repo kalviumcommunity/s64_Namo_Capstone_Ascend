@@ -51,6 +51,21 @@ router.get('/user/:userId', async (req, res) => {
       res.status(500).json({ message: "Server Error" });
     }
   });
+
+
+  // PUT /api/workouts/:id
+router.put('/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updatedWorkout = await Workout.findByIdAndUpdate(id, req.body, { new: true });
+      if (!updatedWorkout) return res.status(404).json({ message: 'Workout not found' });
+  
+      res.json(updatedWorkout);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+  
   
 
 module.exports = router;
