@@ -66,6 +66,22 @@ router.put('/:id', async (req, res) => {
     }
   });
   
+
+  // DELETE /api/workouts/:id
+router.delete('/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deletedWorkout = await Workout.findByIdAndDelete(id);
+      if (!deletedWorkout) return res.status(404).json({ message: 'Workout not found' });
+  
+      res.json({ message: 'Workout deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+  
+
+  
   
 
 module.exports = router;
