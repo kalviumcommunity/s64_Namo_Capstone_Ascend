@@ -13,6 +13,16 @@ app.use(express.json());
 const userRoutes = require("./routes/users");
 app.use("/api/users", userRoutes);
 
+
+// Add this line near the other routes
+const mealRoutes = require('./routes/mealRoutes');
+app.use('/api/meals', mealRoutes);
+
+const progressRoutes = require('./routes/progressRoutes');
+app.use('/api/progress', progressRoutes);
+
+
+
 // ✅ Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("✅ Connected to MongoDB"))
